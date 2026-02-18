@@ -1,0 +1,20 @@
+package com.financiaplus.amlservice.aml.repository;
+
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import com.financiaplus.amlservice.aml.entity.BlacklistedPerson;
+
+public interface BlacklistedPersonRepository extends JpaRepository<BlacklistedPerson, Long> {
+
+    Optional<BlacklistedPerson> findByDocument(String document);
+
+    @Query("""
+                SELECT b FROM BlacklistedPerson b
+                WHERE LOWER(TRIM(b.name)) = LOWER(TRIM(:name))
+            """)
+    Optional<BlacklistedPerson> findByNameNormalized(@Param("name") String name);
+}
