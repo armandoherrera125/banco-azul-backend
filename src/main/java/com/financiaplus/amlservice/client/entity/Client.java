@@ -16,8 +16,10 @@ public class Client {
 
     private String name;
 
+    @Column(unique = true)
     private String document;
 
+    @Column(unique = true)
     private String email;
 
     private String phone;

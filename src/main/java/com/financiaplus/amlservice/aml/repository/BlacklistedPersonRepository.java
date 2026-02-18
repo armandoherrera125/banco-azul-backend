@@ -12,6 +12,8 @@ public interface BlacklistedPersonRepository extends JpaRepository<BlacklistedPe
 
     Optional<BlacklistedPerson> findByDocument(String document);
 
+    boolean existsByDocument(String document);
+
     @Query("""
                 SELECT b FROM BlacklistedPerson b
                 WHERE LOWER(TRIM(b.name)) = LOWER(TRIM(:name))

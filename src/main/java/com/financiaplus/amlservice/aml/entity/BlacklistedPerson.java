@@ -16,6 +16,7 @@ public class BlacklistedPerson {
 
     private String name;
 
+    @Column(unique = true)
     private String document;
 
     @Column(name = "birth_date")

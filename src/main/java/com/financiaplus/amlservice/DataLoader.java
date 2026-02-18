@@ -16,14 +16,16 @@ public class DataLoader implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
 
-        repository.save(
-                new BlacklistedPerson(
-                        null,
-                        "Armando Herrera",
-                        "123456798",
-                        "1990-01-01",
-                        "OFAC"));
+        if (repository.findByDocument("123456798").isEmpty()) {
+            repository.save(
+                    new BlacklistedPerson(
+                            null,
+                            "Armando Herrera",
+                            "123456798",
+                            "1990-01-01",
+                            "OFAC"));
+        }
     }
 }
